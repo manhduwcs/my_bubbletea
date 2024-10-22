@@ -54,10 +54,39 @@
         </div>
     </div>
     <div class="more_info_container mt-5">
-        <h4>Thông tin bổ sung</h4>
+        <h4 style="font-size: 27px; opacity: 0.9; color:#54473f">Thông tin bổ sung</h4>
         <div class="item_seperate"></div>
         <div class="fullscreen_seperate"></div>
-        <p></p>
+        <p class="item_description mt-3">{{ $product[0]->description }}</p>
+        <p class="item_description mt-3">Tên sản phẩm : {{ $name }}</p>
+        <p class="item_description mt-3">Các size hiện có của sản phẩm : @foreach ($product as $item)
+            <span>{{ $item->size }}</span>
+        @endforeach</p>
+        <p class="item_description mt-3">Sản phẩm này là {{ $product[0]->category }}</p>
+        <p class="item_description mt-3">Lượng đường : 30% | 50% | 100%</p>
+    </div>
+    <div class="suggest_item_container mt-5A">
+        <h4 style="font-size: 27px; opacity: 0.9; color:#54473f">Sản phẩm tương tự</h4>
+        <div class="item_seperate mb-3"></div>
+        <div class="suggest_item d-flex">
+            @foreach ($suggest_product as $item)
+            @php
+                $image = $item->image;
+            @endphp            
+                <div style="margin-right: 30px;" class="d-block">
+                    <a href="/menu/product/{{ $item->main_name }}">
+                        <img class="suggest_item_image" src="{{ asset($image) }}" alt="">                
+                    </a>
+                    <a href="/menu/category/{{ $item->main_category }}">
+                        <p class="suggest_item_category">{{ $item->category }}</p>
+                    </a>
+                    <a href="/menu/product/{{ $item->main_name }}">
+                        <p class="suggest_item_name">{{ $item->name }}</p>
+                        <h4 class="suggest_item_price">{{ number_format($item->price,0,',','.') }} &#8363;</h4>        
+                    </a>
+                </div>
+            @endforeach
+        </div>
     </div>
 @endsection
 
@@ -168,6 +197,32 @@
     .fullscreen_seperate{
         border: 1px solid #D1D5DB; 
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Tạo hiệu ứng bóng mờ nhẹ */
+    }
+    .item_description{
+        font-size: 22px;
+        color: #54473f;
+        line-height: 1.7;
+    }
+    .suggest_item{
+        max-width: 310px;
+    }
+    .suggest_item_image{
+        width: 310px;
+        height: 310px;
+    }
+    .suggest_item_category{
+        font-size: 18px;
+        color:#185519;
+        text-transform: uppercase;
+    }
+    .suggest_item_name{
+        margin-top: -15px;
+        font-size: 22px;   
+        color:#54473f;
+    }
+    .suggest_item_price{
+        margin-top: -15px;
+        color:#54473f;
     }
     
 </style>

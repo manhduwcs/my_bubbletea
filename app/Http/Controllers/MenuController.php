@@ -25,7 +25,13 @@ class MenuController extends Controller
         $product = DB::table('products')
             ->where('main_name',$main_name)
             ->get();
-        return view('menu.product_item',compact('product'));
+        $suggest_product = DB::table('products')
+            ->where('main_name','!=',$main_name)
+            ->where('size','L')
+            ->inRandomOrder()
+            ->take(4)
+            ->get();
+        return view('menu.product_item',compact('product','suggest_product'));
     }
 
 
