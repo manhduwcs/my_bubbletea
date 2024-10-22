@@ -1,0 +1,8 @@
+Main Color : green / black
+
+Green light color #557c56
+Green strong color #185519
+
+Text color : #54473f
+
+User : root / password = ''
