@@ -10,62 +10,46 @@
             <a class="home_redirect" href="/home"><h2>Trang chủ</h2></a>   <h2 class="ms-3 me-3">/</h2>  <h2>Menu</h2>
         </div>
         <div class="menu_products_container">
-            <h3 class="mt-4 mb-3">Sản phẩm</h3>
+            <h3 class="mt-4">Sản phẩm</h3>
+            <div class="item_seperate mb-3"></div>
             <ul>
-                <a class="product_list_item" href="/menu/bubbletea"><li class="li_product_list_item">Trà Sữa</li></a>
-                <a class="product_list_item" href="/menu/fruittea"><li class="li_product_list_item">Trà Hoa Quả</li></a>
-                <a class="product_list_item" href="/menu/icecream"><li class="li_product_list_item">Kem</li></a>
+                <a class="product_list_item d-block" href="/menu"><li class="li_filter_list_item">Tất cả sản phẩm</li></a>
+                @foreach ($product_category as $item)
+                    <a class="product_list_item d-block" href="/menu/category/{{ $item->main_category }}"><li class="li_filter_list_item">{{ $item->category }}</li></a>
+                @endforeach
             </ul>
         </div>
         <div class="menu_filter_container">
-            <h3 class="mt-5 mb-3">Lọc sản phẩm</h3>
+            <h3 class="mt-5">Lọc sản phẩm</h3>
+            <div class="item_seperate mb-3"></div>
             <ul>
-                <a class="product_list_item" href=""><li class="li_filter_list_item">Giá : thấp - cao</li></a>
-                <a class="product_list_item" href=""><li class="li_filter_list_item">Giá : cao - thấp</li></a>
-                <a class="product_list_item" href=""><li class="li_filter_list_item">Mức độ phổ biến</li></a>
-                <a class="product_list_item" href=""><li class="li_filter_list_item">Mới nhất</li></a>
+                <a class="product_list_item" href="/menu/filter/min_price_first"><li class="li_filter_list_item">Giá : thấp - cao</li></a>
+                <a class="product_list_item" href="/menu/filter/max_price_first"><li class="li_filter_list_item">Giá : cao - thấp</li></a>
+                <a class="product_list_item" href="/menu/filter/by_popular"><li class="li_filter_list_item">Mức độ phổ biến</li></a>
+                <a class="product_list_item" href="/menu/filter/by_latest"><li class="li_filter_list_item">Mới nhất</li></a>
             </ul>
         </div>
         <div class="suggest_container">
-            <h2 class="mt-5 mb-3">Gợi ý cho bạn</h2>
-            {{-- <div class="suggest_item_container">
-                <a href="">
-                    <img src="{{ $products->image }}" alt="">
-                    <h3>{{ $products->name }}</h3>
-                    <h3>{{ $product_sizeL }}</h3>
-                </a>
-            </div>
-            <div class="recently_item_container">
-                <a href="">
-                    <img src="{{ $products->image }}" alt="">
-                    <h3>{{ $products->name }}</h3>
-                    <h3>{{ $product_sizeL }}</h3>
-                </a>
-            </div>
-            <div class="recently_item_container">
-                <a href="">
-                    <img src="{{ $products->image }}" alt="">
-                    <h3>{{ $products->name }}</h3>
-                    <h3>{{ $product_sizeL }}</h3>
-                </a>
-            </div> --}}
+            <h2 class="mt-5">Gợi ý cho bạn</h2>
+            <div class="item_seperate mb-3"></div>
+            @foreach ($suggest_products as $item)
+                <div class="mb-2">
+                    <a class="product_list_item d-flex" href="/menu/product/{{ $item->main_name }}">
+                        <img class="suggest_image" src="{{ asset($item->image) }}" alt="">
+                        <div class="ms-2" style="width: 170px; height: 90px;">
+                        <p style="margin-top: -5px;" class="suggest_name">{{ $item->name }}</p>
+                        <h4 style="margin-top: -15px;" class="suggest_price">{{ number_format($item->price,'0',',','.') }}</h4>        
+                    </div>    
+                    </a>       
+                </div>           
+                <div class="fullscreen_seperate mb-3 mt-2"></div>              
+            @endforeach
         </div>
     </div>
 
-    <div class="left_content d-flex">
-        <h2 class="text-center mb-4" style="width: 65vw;">Danh mục sản phẩm</h2>
-        @foreach ($products as $product)
-            <div class="item_container">
-                {{-- <a class="link_product_item" href="{{ route('show_product_item',['main_name' => $product->main_name]) }}"> --}}
-                <a class="link_product_item" href="/menu/product/{{ $product->main_name }}">
-                    <img class="product_items" src="{{ $product->image }}" alt="">
-                    <p class="product_category">{{ $product->category }}</p>
-                    <p class="product_name">{{ $product->name }}</p>
-                    <p class="product_price">{{ $product->price }} VND</p>    
-                </a>
-            </div>
-        @endforeach
-    </div>
+    {{-- yield product list for Filter Category + Filters  --}}
+    @yield('main_menu')
+    
 </div>
 @endsection
 
@@ -78,8 +62,7 @@
         margin-right: 0px;
     }
     .right_content{
-        margin-left: 0px;
-        position: fixed;
+        margin-left: -20px;
     }
     .home_redirect{
         color: #557c56;
@@ -116,15 +99,18 @@
     }
 
     .left_content{
-        margin-left: 320px;
+        margin-top: 0px;
+        margin-left: 40px;
         margin-right: 0px;
         flex-wrap: wrap;
     }
     .item_container{
+        margin-top: 0px;
         line-height: 1;
         margin-right: 40px;
         margin-bottom: 20px;
         max-width: 300px;
+        max-height: 450px;
     }
     .product_items{
         width: 300px;
@@ -144,7 +130,25 @@
         font-size: 25px;
         font-weight: bold;
     }
-    
+    .suggest_image{
+        width: 80px;
+        height: 80px;
+    }
+    .suggest_name{
+        font-size: 20px;
+    }
+    .suggest_price{
+        font-size: 23px;
+    }
+    .item_seperate{
+        width: 100px;
+        height: 4px;
+        background-color: #54473f;
+    }
+    .fullscreen_seperate{
+        border: 1px solid #D1D5DB; 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Tạo hiệu ứng bóng mờ nhẹ */
+    }
 </style>
 @endpush
 

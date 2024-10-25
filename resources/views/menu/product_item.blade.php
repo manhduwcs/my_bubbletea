@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @php
-    $image = $product[0]->image;
-    $name = $product[0]->name;
+    $image = $products[0]->image;
+    $name = $products[0]->name;
 @endphp
 
 @section('title',$name)
@@ -19,20 +19,20 @@
                 <h4 style="color: #557c56; font-size: 27px; opacity: 0.9" class="ms-3 me-3">/</h4>
                 <a class="menu_redirect" href="/menu"><h4 style="font-size: 27px; opacity: 0.9;">Menu</h4></a>
             </div>
-            <a style="color: #54473f; opacity: 0.9;" href="/menu/category/{{ $product[0]->main_category }}">
-                <h3 class="item_category">{{ $product[0]->category }}</h3>
+            <a style="color: #54473f; opacity: 0.9;" href="/menu/category/{{ $products[0]->main_category }}">
+                <h3 class="item_category">{{ $products[0]->category }}</h3>
             </a>
             <div class="item_seperate"></div>
-            <h3 class="item_name mt-4 mb-4">{{ $product[0]->name }}</h3>
+            <h3 class="item_name mt-4 mb-4">{{ $products[0]->name }}</h3>
             <div class="item_size_container mt-4" id="item_size_container">
-                @foreach ($product as $item)
+                @foreach ($products as $item)
                     <button class="item_size_button">
                         {{ $item->size }}
                     </button>  
                 @endforeach
             </div>
             <div class="mt-3">
-                @foreach ($product as $item)
+                @foreach ($products as $item)
                     <h4 class="item_price_tag">
                         {{ number_format($item->price,0,',','.') }} &#8363;
                         <input type="hidden" class="input_item_price" value="{{ $item->price }}">
@@ -57,19 +57,19 @@
         <h4 style="font-size: 27px; opacity: 0.9; color:#54473f">Thông tin bổ sung</h4>
         <div class="item_seperate"></div>
         <div class="fullscreen_seperate"></div>
-        <p class="item_description mt-3">{{ $product[0]->description }}</p>
+        <p class="item_description mt-3">{{ $products[0]->description }}</p>
         <p class="item_description mt-3">Tên sản phẩm : {{ $name }}</p>
-        <p class="item_description mt-3">Các size hiện có của sản phẩm : @foreach ($product as $item)
+        <p class="item_description mt-3">Các size hiện có của sản phẩm : @foreach ($products as $item)
             <span>{{ $item->size }}</span>
         @endforeach</p>
-        <p class="item_description mt-3">Sản phẩm này là {{ $product[0]->category }}</p>
+        <p class="item_description mt-3">Sản phẩm này là {{ $products[0]->category }}</p>
         <p class="item_description mt-3">Lượng đường : 30% | 50% | 100%</p>
     </div>
     <div class="suggest_item_container mt-5A">
         <h4 style="font-size: 27px; opacity: 0.9; color:#54473f">Sản phẩm tương tự</h4>
         <div class="item_seperate mb-3"></div>
         <div class="suggest_item d-flex">
-            @foreach ($suggest_product as $item)
+            @foreach ($suggest_products as $item)
             @php
                 $image = $item->image;
             @endphp            

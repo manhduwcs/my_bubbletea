@@ -10,5 +10,7 @@ Route::get('/menu/category/{main_category}',[MenuController::class,'show_categor
 
 Route::get('/menu/product/{main_name}',[MenuController::class,'show_product_item']);
 
+Route::get('/menu/filter/{condition}',[MenuController::class,'show_product_item_with_filter']);
+
 Route::get('/home',[HomeController::class,'show_home']);
 
