@@ -3,6 +3,7 @@
 @php
     $image = $products[0]->image;
     $name = $products[0]->name;
+    $sentsize = "";
 @endphp
 
 @section('title',$name)
@@ -23,34 +24,44 @@
                 <h3 class="item_category">{{ $products[0]->category }}</h3>
             </a>
             <div class="item_seperate"></div>
-            <h3 class="item_name mt-4 mb-4">{{ $products[0]->name }}</h3>
-            <div class="item_size_container mt-4" id="item_size_container">
-                @foreach ($products as $item)
-                    <button class="item_size_button">
+            
+            <form action="/order" method="POST">
+                @csrf
+                @method('POST')
+                <h3 class="item_name mt-4 mb-4">{{ $products[0]->name }}</h3>
+                {{-- send main name --}}
+                <input type="hidden" name="customProducts[0][main_name]" value={{ $products[0]->main_name }}>
+                <div class="item_size_container mt-4" id="item_size_container">
+                    @foreach ($products as $item)
+                    <button type="button" class="item_size_button" value={{ $item->size }}>
                         {{ $item->size }}
-                    </button>  
-                @endforeach
-            </div>
-            <div class="mt-3">
-                @foreach ($products as $item)
+                    </button>
+                    <input type="hidden" class="input_size" name="customProducts[0][size]" value="{{ $item->size }}">
+                    @endforeach
+
+                </div>
+                <div class="mt-3">
+                    @foreach ($products as $item)
                     <h4 class="item_price_tag">
                         {{ number_format($item->price,0,',','.') }} &#8363;
-                        <input type="hidden" class="input_item_price" value="{{ $item->price }}">
                     </h4>
-                @endforeach
-            </div>
-
-            <div class="item_seperate mb-5"></div>
-
-            <div class="d-flex">
-                <form action="" method="">
+                    <input type="hidden" class="input_price_tag" name="customProducts[0][price]" value={{ $item->price }}>
+                    @endforeach
+                    {{-- send price --}}
+                </div>
+            
+                <div class="item_seperate mb-5"></div>
+            
+                <div class="d-flex">
                     <button type="button" id="decrease_quantity_button">-</button>
-                    <input type="number" name="choose_quantity" id="choose_quantity" value="1" min="1" max="20" readonly>
+                    {{-- send quantity --}}
+                    <input type="number" id="choose_quantity" value="1" min="1" max="20" readonly>
+                    <input type="hidden" name="customProducts[0][quantity]" id="quantity" value="1" min="1" max="20" readonly>
                     <button type="button" id="increase_quantity_button">+</button>
-                </form>
-                <button class="add_to_cart_button ms-3"><i class="bi bi-cart"></i></button>
-            </div>
-            <button class="order_item_button mt-3">Đặt hàng ngay !!!</button>
+                    <button type="submit" class="add_to_cart_button ms-3" name="action" value="add_to_cart"><i class="bi bi-cart"></i></button>
+                </div>
+                <button type="submit" class="order_item_button mt-3" name="action" value="place_order">Đặt hàng ngay !!!</button>
+            </form>
         </div>
     </div>
     <div class="more_info_container mt-5">
@@ -229,5 +240,6 @@
 @endpush
 
 @push('scripts')
-<script src="{{ asset('js/product_item.js') }}"></script>
+<script src="{{ asset('js/product_item.js') }}">
+</script>
 @endpush

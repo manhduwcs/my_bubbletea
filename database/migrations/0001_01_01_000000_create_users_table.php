@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('address');
             $table->string('password');
-            $table->boolean('status')->default(0);
+            $table->enum('role',['User','Admin'])->default('User');
+            $table->enum('account_status',['Guest','Pending','Active']);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -36,10 +36,10 @@
                 <div class="mb-2">
                     <a class="product_list_item d-flex" href="/menu/product/{{ $item->main_name }}">
                         <img class="suggest_image" src="{{ asset($item->image) }}" alt="">
-                        <div class="ms-2" style="width: 170px; height: 90px;">
-                        <p style="margin-top: -5px;" class="suggest_name">{{ $item->name }}</p>
-                        <h4 style="margin-top: -15px;" class="suggest_price">{{ number_format($item->price,'0',',','.') }}</h4>        
-                    </div>    
+                        <div class="ms-2">
+                            <p style="margin-top: -5px;" class="suggest_name">{{ $item->name }}</p>
+                            <h4 style="margin-top: -15px;" class="suggest_price">{{ number_format($item->price,'0',',','.') }}</h4>            
+                        </div>
                     </a>       
                 </div>           
                 <div class="fullscreen_seperate mb-3 mt-2"></div>              
