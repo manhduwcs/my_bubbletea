@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('password');
             $table->enum('role',['User','Admin'])->default('User');
             $table->enum('account_status',['Guest','Pending','Active']);
+            $table->string('avatar');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -9,6 +9,15 @@
 @section('title',$name)
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="product_item_container d-flex">
         <div class="image_container">
             <img class="product_item_image" src="{{ asset($image) }}" alt="">
@@ -103,6 +112,7 @@
 
 @push('styles')
 <style>
+    
     .product_item_container{
         padding-top: 30px;
         padding-top: 30px;

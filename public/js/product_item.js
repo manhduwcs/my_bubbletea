@@ -81,4 +81,7 @@ window.onload = function() {
             increase_quantity_button.classList.remove('click');
         }
     });
+
+
+
 }

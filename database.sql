@@ -32,18 +32,17 @@ VALUES
 
 -- Các sản phẩm khác tương tự...
 
-INSERT INTO users (name, phone, email, address, password, role, account_status, remember_token, created_at, updated_at) VALUES
-('Nguyen Duc Manh', '0966773221', 'manh99@gmail.com', '192 Lang Thuong', '112233', 'Admin', 'Active', NULL, NOW(), NOW()),
-('Tran Thi Bich', '0932445678', 'bichtran@gmail.com', '25 Le Loi', '112233', 'Admin', 'Active', NULL, NOW(), NOW()),
-('Le Van Tam', '0911345678', 'tamlv@gmail.com', '13 Tran Quoc Toan', '112233', 'Admin', 'Active', NULL, NOW(), NOW()),
-('Nguyen Thi Hoa', '0977559988', 'hoa.nt@gmail.com', '50 Hang Bai', '112233', 'Admin', 'Active', NULL, NOW(), NOW()),
-
-('Pham Van Hai', '0905456789', 'hai.pv@gmail.com', '12 Pham Hung', '745281', 'User', 'Guest', NULL, NOW(), NOW()),
-('Dang Thi Lan', '0969341222', 'lan.dt@gmail.com', '34 Hang Dao', '569013', 'User', 'Guest', NULL, NOW(), NOW()),
-('Tran Van Bao', '0981234567', 'bao.tv@gmail.com', '10 Ha Dong', '285910', 'User', 'Guest', NULL, NOW(), NOW()),
-('Le Thi Phuong', '0922113456', 'phuong.lt@gmail.com', '80 Le Duan', '627498', 'User', 'Guest', NULL, NOW(), NOW()),
-('Nguyen Van Phuc', '0912123456', 'phuc.nv@gmail.com', '90 Truong Dinh', '934781', 'User', 'Guest', NULL, NOW(), NOW()),
-('Vu Thi Huong', '0945345678', 'huong.vt@gmail.com', '16 Cau Giay', '158934', 'User', 'Guest', NULL, NOW(), NOW());
+INSERT INTO users (name, phone, email, address, password, role, account_status, avatar, remember_token, created_at, updated_at) VALUES
+('Nguyen Duc Manh', '0966773221', 'manh99@gmail.com', '192 Lang Thuong', '$2y$12$G0/U9sKz6I1pT0Pfi8W0b.kb0y9a9zDDrnoR27UMuW.0XZbNXkl1u', 'Admin', 'Active', 'images/users/users_avatar_7.png', NULL, NOW(), NOW()),
+('Tran Thi Bich', '0932445678', 'bichtran@gmail.com', '25 Le Loi', '$2y$12$FgABHvmnA7kgABGp5TxpjeKjYuxg5uN2PyJqT8VnkF10nqNGeww/a', 'Admin', 'Active', 'images/users/users_avatar_2.png', NULL, NOW(), NOW()),
+('Le Van Tam', '0911345678', 'tamlv@gmail.com', '13 Tran Quoc Toan', '$2y$12$mrP0wz9hBo2qX7k27tPAy.dJ.JI35E4.Xb2Iz7Z.9z7kH0z2xR9Xq', 'Admin', 'Active', 'images/users/users_avatar_4.png', NULL, NOW(), NOW()),
+('Nguyen Thi Hoa', '0977559988', 'hoa.nt@gmail.com', '50 Hang Bai', '$2y$12$5B7Bhz8xVq2V0pM.eD1Dp7HRxT8wDbz8u5Shml9zIugmfIS6H.JfO', 'Admin', 'Active', 'images/users/users_avatar_3.png', NULL, NOW(), NOW()),
+('Pham Van Hai', '0905456789', 'hai.pv@gmail.com', '12 Pham Hung', '$2y$12$QS9tBHZ9tW9mJk0wVuMViFT1A9VgmbX7ldOxHwJ5YPdyqIp5fGq4S', 'User', 'Guest', 'images/users/users_avatar_5.png', NULL, NOW(), NOW()),
+('Dang Thi Lan', '0969341222', 'lan.dt@gmail.com', '34 Hang Dao', '$2y$12$Ivq7VToYF1Tu8K1Jomwz6.IiYgVVGBU8g6IgdDgdyiylRNRUjp1d6', 'User', 'Guest', 'images/users/users_avatar_9.png', NULL, NOW(), NOW()),
+('Tran Van Bao', '0981234567', 'bao.tv@gmail.com', '10 Ha Dong', '$2y$12$XKb0DxQ7Re8v.0uS6GV9v6JjSEB9kxIuUQ57b6aLqsQ8FsVb6vbg.', 'User', 'Guest', 'images/users/users_avatar_1.png', NULL, NOW(), NOW()),
+('Le Thi Phuong', '0922113456', 'phuong.lt@gmail.com', '80 Le Duan', '$2y$12$J2K4hl1znk7wCxhK76KvL9PY58dS4XzDOp0uyBh8xqAM6NcxevpSC', 'User', 'Guest', 'images/users/users_avatar_6.png', NULL, NOW(), NOW()),
+('Nguyen Van Phuc', '0912123456', 'phuc.nv@gmail.com', '90 Truong Dinh', '$2y$12$9f9Svh.csi0W93G5P7k1.Pwjs6s6cVYQREO.p9yRsqPR8mcLfqe0e', 'User', 'Guest', 'images/users/users_avatar_8.png', NULL, NOW(), NOW()),
+('Vu Thi Huong', '0945345678', 'huong.vt@gmail.com', '16 Cau Giay', '$2y$12$LlBlz3mVfA8KvXiV/mf6abngv1HNOuRnlx9U5y02Xm.1m4HrtuDL6', 'User', 'Guest', 'images/users/users_avatar_2.png', NULL, NOW(), NOW());
 
 -- Create Tables --
 CREATE TABLE products (
